@@ -1,0 +1,309 @@
+# ADAES - Automatic Descriptive Answer Evaluation System
+## Client Installation and Setup Guide
+
+Welcome to the ADAES (Automatic Descriptive Answer Evaluation System)! This guide will help you set up and run the application on your laptop.
+
+---
+
+## 📋 PREREQUISITES
+
+Before starting, ensure you have the following installed on your system:
+
+### Required Software:
+1. **Python 3.8 or higher** - Download from https://python.org
+2. **Node.js 16 or higher** - Download from https://nodejs.org
+3. **Visual Studio Code** - Download from https://code.visualstudio.com
+4. **Git** (optional but recommended) - Download from https://git-scm.com
+
+### System Requirements:
+- **Operating System**: Windows 10/11, macOS 10.14+, or Linux Ubuntu 18.04+
+- **RAM**: Minimum 4GB (8GB recommended)
+- **Storage**: At least 2GB free space
+- **Internet Connection**: Required for downloading dependencies
+
+---
+
+## 🚀 STEP-BY-STEP SETUP GUIDE
+
+### Step 1: Extract the Project
+1. **Download** the `bibek_FYP.zip` file from your instructor
+2. **Extract** the zip file to your desired location (e.g., Desktop, Documents)
+3. **Note the path** where you extracted the folder (you'll need this later)
+
+### Step 2: Open in Visual Studio Code
+1. **Launch Visual Studio Code**
+2. **Click** on "File" → "Open Folder"
+3. **Navigate** to the extracted `bibek_FYP` folder
+4. **Select** the `bibek_FYP` folder and click "Open"
+5. You should now see the project files in the VS Code sidebar
+
+### Step 3: Set Up the Backend (Python/Flask)
+
+#### 3.1 Install Python Dependencies
+1. **Open Terminal** in VS Code:
+   - Press `Ctrl+Shift+` (Windows/Linux) or `Cmd+Shift+` (macOS)
+   - Or go to "Terminal" → "New Terminal"
+
+2. **Navigate to the backend folder**:
+   ```bash
+   cd backend
+   ```
+
+3. **Create a virtual environment** (recommended):
+   ```bash
+   python -m venv venv
+   ```
+
+4. **Activate the virtual environment**:
+   - **Windows**:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - **macOS/Linux**:
+     ```bash
+     source venv/bin/activate
+     ```
+   
+   **Note**: You'll know it's activated when you see `(venv)` at the beginning of your terminal prompt.
+
+5. **Install required packages**:
+   ```bash
+   pip install -r ../requirements.txt
+   ```
+
+#### 3.2 Start the Backend Server
+1. **Make sure you're in the backend folder**:
+   ```bash
+   cd backend
+   ```
+
+2. **Run the Flask application**:
+   ```bash
+   python app.py
+   ```
+
+3. **Wait for the startup message**. You should see:
+   ```
+   ✅ Database initialized!
+   🚀 ADAES Backend Server Starting...
+   📍 Server: http://localhost:5001
+   ```
+
+4. **Keep this terminal window open** - the backend server is now running
+
+### Step 4: Set Up the Frontend (React)
+
+#### 4.1 Open a New Terminal
+1. **Open a new terminal** in VS Code (Terminal → New Terminal)
+2. **Navigate to the frontend folder**:
+   ```bash
+   cd frontend
+   ```
+
+#### 4.2 Install Node.js Dependencies
+1. **Install npm packages**:
+   ```bash
+   npm install
+   ```
+
+2. **Wait for installation to complete** (this may take a few minutes)
+
+3. **Important**: If you see security vulnerabilities, **DO NOT** run `npm audit fix --force` as it can break the application. The vulnerabilities are usually in development dependencies and don't affect functionality.
+
+#### 4.3 Start the Frontend Server
+1. **Start the React development server**:
+   ```bash
+   npm start
+   ```
+
+2. **Wait for the application to compile**. You should see:
+   ```
+   Compiled successfully!
+   Local:            http://localhost:3000
+   ```
+
+3. **The browser should automatically open** to `http://localhost:3000`
+
+---
+
+## 🎯 USING THE APPLICATION
+
+### Initial Setup
+1. **Register a new account**:
+   - Click "Sign Up" on the landing page
+   - Choose your role: "Teacher" or "Student"
+   - Fill in your details and create an account
+
+2. **Login** with your credentials
+
+### For Teachers:
+1. **Create Questions**:
+   - Click "Create Question" on the dashboard
+   - Select a subject from the dropdown
+   - Enter the question and reference answer
+   - Set the maximum score
+
+2. **Manage Results**:
+   - View student submissions
+   - Toggle result visibility for students
+   - Edit or delete questions
+
+3. **View Analytics**:
+   - Check student performance statistics
+   - Monitor submission patterns
+
+### For Students:
+1. **Browse Questions**:
+   - View all available questions
+   - Filter by subject
+
+2. **Submit Answers**:
+   - Click on a question
+   - Type your answer in the text area
+   - Submit for AI evaluation
+
+3. **View Results**:
+   - Check your scores and feedback
+   - View detailed evaluation breakdown
+   - Edit your answers (up to 3 times)
+
+---
+
+## 🔧 TROUBLESHOOTING
+
+### Common Issues and Solutions:
+
+#### Backend Issues:
+1. **"Port 5001 already in use"**:
+   - Close any other applications using port 5001
+   - Or change the port in `backend/app.py` (line 628)
+
+2. **"Module not found" errors**:
+   - Make sure you're in the correct virtual environment
+   - Reinstall requirements: `pip install -r ../requirements.txt`
+
+3. **"sqlite3" installation error**:
+   - This is normal! sqlite3 is built into Python
+   - The error can be safely ignored
+   - Continue with the next steps
+
+4. **"Command not found: venvScriptsactivate"** (macOS/Linux):
+   - Use `source venv/bin/activate` instead of `venv\Scripts\activate`
+   - The backslash command is for Windows only
+
+5. **"NameError: name 'model' is not defined"**:
+   - This is a known bug that has been fixed
+   - If you encounter this, the backend code needs to be updated
+   - Contact your instructor for the latest version
+
+6. **Database errors**:
+   - Delete `backend/adaes.db` and restart the backend
+   - The database will be recreated automatically
+
+#### Frontend Issues:
+1. **"Port 3000 already in use"**:
+   - Close other React applications
+   - Or press 'Y' when prompted to use a different port
+
+2. **"npm install" fails**:
+   - Clear npm cache: `npm cache clean --force`
+   - Delete `node_modules` folder and try again
+
+3. **"react-scripts: command not found"**:
+   - This happens if `react-scripts` was accidentally removed
+   - Reinstall react-scripts: `npm install react-scripts`
+   - Or reinstall all dependencies: `npm install`
+
+4. **"npm audit fix --force" removed packages**:
+   - **DO NOT** run `npm audit fix --force` as it can break the application
+   - If you already ran it, reinstall dependencies: `npm install`
+   - The vulnerabilities are usually in development dependencies and don't affect functionality
+
+5. **"Cannot connect to backend"**:
+   - Ensure the backend server is running on port 5001
+   - Check if both servers are running simultaneously
+
+#### General Issues:
+1. **Slow performance**:
+   - Close unnecessary applications
+   - Ensure stable internet connection for initial setup
+
+2. **Permission errors** (macOS/Linux):
+   - Use `sudo` if necessary for system-wide installations
+   - Or use a virtual environment (recommended)
+
+---
+
+## 📱 SYSTEM ARCHITECTURE
+
+The application consists of two main components:
+
+1. **Backend (Python/Flask)**:
+   - Runs on `http://localhost:5001`
+   - Handles AI model evaluation
+   - Manages database operations
+   - Provides REST API endpoints
+
+2. **Frontend (React)**:
+   - Runs on `http://localhost:3000`
+   - User interface and interactions
+   - Communicates with backend via API calls
+
+---
+
+## 🛑 STOPPING THE APPLICATION
+
+### To Stop the Servers:
+1. **Backend**: In the backend terminal, press `Ctrl+C`
+2. **Frontend**: In the frontend terminal, press `Ctrl+C`
+
+### Alternative (Using the provided script):
+- Run `./stop_server.sh` (macOS/Linux) or `stop_server.sh` (Windows)
+
+---
+
+## 📞 SUPPORT
+
+If you encounter any issues:
+
+1. **Check this guide** for common solutions
+2. **Verify all prerequisites** are installed correctly
+3. **Ensure both servers** are running simultaneously
+4. **Check the terminal output** for error messages
+5. **Contact your instructor** with specific error details
+
+---
+
+## 📚 TECHNICAL DETAILS
+
+### Key Features:
+- **AI-Powered Evaluation**: Uses BERT and Word2Vec models
+- **Multi-Criteria Scoring**: Content, Completeness, Coherence, Grammar, Relevance
+- **Role-Based Access**: Separate interfaces for teachers and students
+- **Real-Time Feedback**: Instant evaluation results
+- **Subject Validation**: Ensures answers are relevant to the question
+
+### Technology Stack:
+- **Backend**: Python, Flask, SQLite, PyTorch, Transformers
+- **Frontend**: React, JavaScript, Tailwind CSS
+- **AI Models**: BERT, Word2Vec, Sentence Transformers
+- **Database**: SQLite (included in the project)
+
+---
+
+## ✅ VERIFICATION CHECKLIST
+
+Before contacting support, ensure:
+- [ ] Python 3.8+ is installed
+- [ ] Node.js 16+ is installed
+- [ ] VS Code is installed and project is opened
+- [ ] Backend server is running on port 5001
+- [ ] Frontend server is running on port 3000
+- [ ] Both terminals show successful startup messages
+- [ ] Browser opens to the application successfully
+
+---
+
+**Happy Learning with ADAES! 🎓**
+
+For additional help, refer to the project documentation or contact your instructor.
